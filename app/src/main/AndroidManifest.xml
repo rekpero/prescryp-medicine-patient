@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.prescywallet.presdigi">
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-feature android:name="android.hardware.camera.front" />
+    <uses-feature android:name="android.hardware.camera2" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo_256px"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_256px"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/HomeTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".database.AlarmReminderProvider"
+            android:authorities="com.prescywallet.presdigi"
+            android:exported="false" />
+
+        <receiver android:name=".reminder.TakeMedicineReceiver" />
+        <receiver android:name=".reminder.SkipMedicineReceiver" />
+
+        <service
+            android:name=".reminder.ReminderAlarmService"
+            android:exported="false" />
+        <service
+            android:name=".reminder.MissedReminderAlarmService"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SignInAcyivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CreateAccountActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SigninActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PrescriptionImageviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AccountSettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChangeMobileNumberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DigitalPrescriptionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SetReminderActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SetReminderTimeActivity" />
+        <activity android:name=".ValidateOTPActivity" />
+        <activity android:name=".PhoneNumberActivity" />
+        <activity android:name=".SearchMedicineActivity" />
+        <activity android:name=".PrescriptionGroupingActivity" />
+        <activity
+            android:name=".ReminderActivity"
+            android:label="@string/title_activity_new_remider"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ReferAndEarnActivity"
+            android:label="@string/title_activity_refer_and_earn"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ShowMedicineDetailActivity" />
+        <activity android:name=".CartActivity" />
+        <activity
+            android:name=".AttachPrescriptionActivity"
+            android:label="@string/title_activity_attach_prescription"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UploadAttachedPrescriptionActivity"
+            android:label="@string/title_activity_upload_attached_prescription"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ShowDigitalPrescriptionActivity"
+            android:label="@string/title_activity_show_digital_prescription"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SelectAddressActivity"
+            android:label="@string/title_activity_select_address"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MedicineActivity"
+            android:label="@string/title_activity_medicine"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AddNewAddressActivity"
+            android:label="@string/title_activity_add_new_address"
+            android:theme="@style/AppTheme" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="ocr" />
+
+        <activity
+            android:name=".AddressMapsActivity"
+            android:label="@string/title_activity_address_maps" />
+        <activity
+            android:name=".ChangeDeliveryAreaActivity"
+            android:label="@string/title_activity_change_delivery_area"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".OrderSummaryActivity"
+            android:label="@string/title_activity_order_summary"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SelectAddressForCheckoutActivity"
+            android:label="@string/title_activity_select_address_for_checkout"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PlaceOrderActivity"
+            android:label="@string/title_activity_place_order"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".TrackOrderActivity"
+            android:label="@string/title_activity_track_order"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".YourOrderListActivity"
+            android:label="@string/title_activity_your_order_list"
+            android:theme="@style/AppTheme" />
+
+        <service
+            android:name=".services.MyFirebaseMessagingService"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".GenerateQRCodeActivity"
+            android:label="@string/title_activity_generate_qrcode"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ChangeCityActivity"
+            android:label="@string/title_activity_change_city"
+            android:theme="@style/AppTheme"></activity>
+    </application>
+
+</manifest>
