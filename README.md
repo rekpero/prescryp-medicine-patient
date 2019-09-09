@@ -25,6 +25,7 @@ This app stores data to a MySQL database using a PHP REST API to communicate wit
 
 This app is built on Android (Java) which has various abilities:
 
+- Authentication is done with both email/password and phone number as well as Google authentication and facebook authentication.
 - Store data with PHP REST API in MySQL DB.
 - Built a Reminder with a Job Scheduler that will give notification for Pill Reminder.
 - Has the abilty for changing Language to Hindi, Bengali.
