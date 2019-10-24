@@ -1,5 +1,10 @@
 # Prescryp Medicines Patient - Beta
 
+<img src="https://github.com/mmitrasish/prescryp-medicine-patient/blob/master/app/src/main/res/drawable/logo_256px.png" width="100" height="100">
+
+**Check Releases for apk.** <br/>
+[Release](https://github.com/mmitrasish/prescryp-medicine-patient/releases/tag/Beta-1.0.0)
+
 Health App for buying medicines from nearby medicine retail within 1 hour by just uploading your prescription. You can also view information about Medicines like Manufacture Name, Medicine Composition, Primary Usage, Medium of Usage, MRP, Package Contain. You can also add Pill Reminders in the App. You can see your prescription details and order details. This app supports various languages.
 
 This app is connected to vendor app and will give realtime updates about the order placed simmilar to Zomato, Swiggy. The order is placed to the nearest active vendor and wait for the approval of the vendor and notify when the approval is done or rejected. There is a valet app that is also connected to this app when the order is out for delivery which will give you an estimated time of arrival and the details to the valet. Also there a OTP generated for the valet so there no issue with the medicine security.
