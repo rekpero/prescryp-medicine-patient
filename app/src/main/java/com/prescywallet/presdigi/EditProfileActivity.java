@@ -10,14 +10,14 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 import com.prescywallet.presdigi.Session.MobileNumberSessionManager;
 import com.squareup.picasso.Picasso;
 
@@ -57,14 +58,14 @@ public class EditProfileActivity extends AppCompatActivity implements LocationLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile_bar_main);
 
-        profileImg = (CircleImageView) findViewById(R.id.profile_pic);
-        name = (TextInputLayout) findViewById(R.id.name_input);
-        phone_number = (TextInputLayout) findViewById(R.id.phone_no_input);
-        email = (TextInputLayout) findViewById(R.id.email_input);
-        location_input = (TextInputLayout) findViewById(R.id.loc_input);
-        updateCard = (CardView) findViewById(R.id.saveProfileUpdate);
+        profileImg = findViewById(R.id.profile_pic);
+        name = findViewById(R.id.name_input);
+        phone_number = findViewById(R.id.phone_no_input);
+        email = findViewById(R.id.email_input);
+        location_input = findViewById(R.id.loc_input);
+        updateCard = findViewById(R.id.saveProfileUpdate);
 
-        toolbar = (Toolbar) findViewById(R.id.editProfileToolbar);
+        toolbar = findViewById(R.id.editProfileToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

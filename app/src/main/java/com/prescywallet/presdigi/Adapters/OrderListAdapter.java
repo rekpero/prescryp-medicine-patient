@@ -1,24 +1,19 @@
 package com.prescywallet.presdigi.Adapters;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.prescywallet.presdigi.Model.CartItem;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.prescywallet.presdigi.Misc.RunTimePermission;
 import com.prescywallet.presdigi.Model.TrackOrderItem;
 import com.prescywallet.presdigi.R;
-import com.prescywallet.presdigi.Misc.RunTimePermission;
 
 import java.text.NumberFormat;
 import java.util.List;

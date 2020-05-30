@@ -2,13 +2,14 @@ package com.prescywallet.presdigi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.prescywallet.presdigi.Model.PrescriptionImagePathItem;
 import com.prescywallet.presdigi.Session.MobileNumberSessionManager;
 import com.prescywallet.presdigi.database.AttachedPrescriptionDBHelper;
@@ -28,7 +29,7 @@ public class UploadAttachedPrescriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_attached_prescription);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -42,7 +43,7 @@ public class UploadAttachedPrescriptionActivity extends AppCompatActivity {
 
         uploadImageView();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,14 +57,14 @@ public class UploadAttachedPrescriptionActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadImageView(){
+    private void uploadImageView() {
 
-        imgShow = (ImageView) findViewById(R.id.imgShow);
-        progressBar = (ProgressBar) findViewById(R.id.loading);
+        imgShow = findViewById(R.id.imgShow);
+        progressBar = findViewById(R.id.loading);
 
         progressBar.setVisibility(View.GONE);
 
-        if (getIntent() != null){
+        if (getIntent() != null) {
             pathImage = getIntent().getStringExtra("pathImage");
         }
 

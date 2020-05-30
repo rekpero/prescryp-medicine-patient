@@ -1,10 +1,11 @@
 package com.prescywallet.presdigi;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
 
@@ -23,7 +24,7 @@ public class PrescriptionImageviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prescription_imageview_bar_main);
 
-        toolbar = (Toolbar) findViewById(R.id.prescription_image_view_toolbar);
+        toolbar = findViewById(R.id.prescription_image_view_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -34,7 +35,7 @@ public class PrescriptionImageviewActivity extends AppCompatActivity {
             }
         });
 
-        presImageView = (ImageView) findViewById(R.id.prescriptionView);
+        presImageView = findViewById(R.id.prescriptionView);
 
         if(getIntent().getStringExtra("PrescriptionId") != null && getIntent().getStringExtra("Date") != null
                 && getIntent().getStringExtra("ImagePathUrl") != null){

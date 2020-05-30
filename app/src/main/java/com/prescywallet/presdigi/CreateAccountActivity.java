@@ -2,15 +2,15 @@ package com.prescywallet.presdigi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 import com.prescywallet.presdigi.Model.User;
 import com.prescywallet.presdigi.Session.UserSessionManager;
 
@@ -41,7 +42,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_bar_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -53,16 +54,15 @@ public class CreateAccountActivity extends AppCompatActivity {
         });
 
 
-
         session = new UserSessionManager(getApplicationContext());
 
 
-        name = (TextInputLayout) findViewById(R.id.full_name);
-        mob_num = (TextInputLayout) findViewById(R.id.mobile_number);
-        email = (TextInputLayout) findViewById(R.id.email);
-        password = (TextInputLayout) findViewById(R.id.password);
+        name = findViewById(R.id.full_name);
+        mob_num = findViewById(R.id.mobile_number);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
 
-        continue_btn = (CardView) findViewById(R.id.continue_btn);
+        continue_btn = findViewById(R.id.continue_btn);
 
         signin_now = findViewById(R.id.signin_now);
         signin_now.setOnClickListener(new View.OnClickListener() {
@@ -73,30 +73,29 @@ public class CreateAccountActivity extends AppCompatActivity {
                 finish();
             }
         });
-        progressBar = (ProgressBar) findViewById(R.id.loading);
+        progressBar = findViewById(R.id.loading);
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 continue_btn.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
-                if (!email.getEditText().getText().toString().trim().contains("@")){
+                if (!email.getEditText().getText().toString().trim().contains("@")) {
                     email.setErrorEnabled(false);
                     email.setError("Invalid E-mail");
                     progressBar.setVisibility(View.GONE);
-                }else if (TextUtils.isEmpty(name.getEditText().getText().toString().trim())){
+                } else if (TextUtils.isEmpty(name.getEditText().getText().toString().trim())) {
                     name.setErrorEnabled(false);
                     name.setError("Cant be blank");
                     progressBar.setVisibility(View.GONE);
-                }else if (TextUtils.isEmpty(mob_num.getEditText().getText().toString().trim())){
+                } else if (TextUtils.isEmpty(mob_num.getEditText().getText().toString().trim())) {
                     mob_num.setErrorEnabled(false);
                     mob_num.setError("Cant be blank");
                     progressBar.setVisibility(View.GONE);
-                }else if (TextUtils.isEmpty(password.getEditText().getText().toString().trim())){
+                } else if (TextUtils.isEmpty(password.getEditText().getText().toString().trim())) {
                     password.setErrorEnabled(false);
                     password.setError("Cant be blank");
                     progressBar.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     final User user = new User(null, name.getEditText().getText().toString().trim(), null,
                             mob_num.getEditText().getText().toString().trim(),
                             email.getEditText().getText().toString().trim(), "", "",
@@ -129,7 +128,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                                     mob_num.getEditText().getText().clear();
                                     email.getEditText().getText().clear();
                                     password.getEditText().getText().clear();
-                                    RelativeLayout layout = (RelativeLayout) findViewById(R.id.create_new_acc);
+                                    RelativeLayout layout = findViewById(R.id.create_new_acc);
                                     layout.clearFocus();
                                     name.requestFocus();
 

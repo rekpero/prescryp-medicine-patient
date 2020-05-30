@@ -1,12 +1,12 @@
 package com.prescywallet.presdigi;
 
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -14,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 import com.prescywallet.presdigi.Session.MobileNumberSessionManager;
 
 import org.json.JSONException;
@@ -33,7 +34,7 @@ public class SetPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_password_bar_main);
-        toolbar = (Toolbar) findViewById(R.id.passwordToolbar);
+        toolbar = findViewById(R.id.passwordToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -44,14 +45,14 @@ public class SetPasswordActivity extends AppCompatActivity {
             }
         });
 
-        newPassword = (TextInputLayout) findViewById(R.id.new_password);
-        repeatPassword = (TextInputLayout) findViewById(R.id.repeat_password);
-        setPasswordCard = (CardView) findViewById(R.id.setPasswordCard);
+        newPassword = findViewById(R.id.new_password);
+        repeatPassword = findViewById(R.id.repeat_password);
+        setPasswordCard = findViewById(R.id.setPasswordCard);
 
         setPasswordCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (newPassword.getEditText().getText().toString().equalsIgnoreCase(repeatPassword.getEditText().getText().toString())){
+                if (newPassword.getEditText().getText().toString().equalsIgnoreCase(repeatPassword.getEditText().getText().toString())) {
                     setPassword(newPassword.getEditText().getText().toString());
                 }
 

@@ -2,8 +2,9 @@ package com.prescywallet.presdigi.Abstract;
 
 import android.database.Cursor;
 import android.database.DataSetObserver;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class RecyclerViewCursorAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
     private Cursor mCursor;
@@ -11,8 +12,7 @@ public abstract class RecyclerViewCursorAdapter<VH extends RecyclerView.ViewHold
     private int mRowIDColumn;
 
 
-    public RecyclerViewCursorAdapter(Cursor cursor)
-    {
+    public RecyclerViewCursorAdapter(Cursor cursor) {
         setHasStableIds(true);
         swapCursor(cursor);
     }

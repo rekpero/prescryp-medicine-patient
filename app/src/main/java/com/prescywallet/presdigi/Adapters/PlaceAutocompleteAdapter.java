@@ -2,8 +2,6 @@ package com.prescywallet.presdigi.Adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.text.style.CharacterStyle;
 import android.text.style.StyleSpan;
 import android.util.Log;
@@ -14,6 +12,9 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -32,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 public class PlaceAutocompleteAdapter extends RecyclerView.Adapter<PlaceAutocompleteAdapter.PlaceViewHolder> implements Filterable {
 
     public interface PlaceAutoCompleteInterface {
-        public void onPlaceClick(ArrayList<PlaceAutocomplete> mResultList, int position);
+        void onPlaceClick(ArrayList<PlaceAutocomplete> mResultList, int position);
     }
 
     Context mContext;

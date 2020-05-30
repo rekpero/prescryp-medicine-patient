@@ -2,12 +2,13 @@ package com.prescywallet.presdigi.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
 
 import com.prescywallet.presdigi.DigitalPrescriptionActivity;
 import com.prescywallet.presdigi.Model.ListItem;
@@ -36,16 +37,15 @@ public class PresGridAdapter extends ArrayAdapter<ListItem> {
         View itemView = convertView;
         ViewHolder holder = null;
 
-        if (itemView == null)
-        {
+        if (itemView == null) {
             final LayoutInflater layoutInflater =
                     (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             itemView = layoutInflater.inflate(resourceId, parent, false);
 
             holder = new ViewHolder();
-            holder.textViewPresId = (TextView) itemView.findViewById(R.id.gridPresId);
-            holder.textViewDate = (TextView) itemView.findViewById(R.id.gridPresDate);
-            holder.presCard = (CardView) itemView.findViewById(R.id.presCard);
+            holder.textViewPresId = itemView.findViewById(R.id.gridPresId);
+            holder.textViewDate = itemView.findViewById(R.id.gridPresDate);
+            holder.presCard = itemView.findViewById(R.id.presCard);
             itemView.setTag(holder);
         }
         else

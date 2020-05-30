@@ -4,24 +4,19 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.prescywallet.presdigi.Interface.OnDataChangeListener;
 import com.prescywallet.presdigi.Interface.OnDataClickListener;
 import com.prescywallet.presdigi.Model.CartItem;
@@ -30,16 +25,11 @@ import com.prescywallet.presdigi.Model.StorePriorityItem;
 import com.prescywallet.presdigi.R;
 import com.prescywallet.presdigi.database.CartDbHelper;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 public class ShowMedicineShopAdapter extends RecyclerView.Adapter<ShowMedicineShopAdapter.ViewHolder>{
 

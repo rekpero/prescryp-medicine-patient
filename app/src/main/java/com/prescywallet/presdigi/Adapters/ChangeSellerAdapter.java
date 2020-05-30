@@ -4,14 +4,14 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -95,7 +95,7 @@ public class ChangeSellerAdapter extends RecyclerView.Adapter<ChangeSellerAdapte
                                         onDataClickListener.onDataClick(position);
                                     }
                                 });
-                                String quantity = String.valueOf(listItem.getQuantity()) + " QTY";
+                                String quantity = listItem.getQuantity() + " QTY";
                                 holder.quantity.setText(quantity);
                                 try {
                                     List<Address> addresses = geocoder.getFromLocation(store_latlng.latitude, store_latlng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
@@ -126,9 +126,9 @@ public class ChangeSellerAdapter extends RecyclerView.Adapter<ChangeSellerAdapte
                                     String distance_shown;
                                     if (store_dist > 1000){
                                         double store_dist_double = store_dist/1000.00;
-                                        distance_shown = String.valueOf(store_dist_double) + " km";
+                                        distance_shown = store_dist_double + " km";
                                     }else {
-                                        distance_shown = String.valueOf(store_dist) + " m";
+                                        distance_shown = store_dist + " m";
                                     }
                                     holder.distance_store.setText(distance_shown);
 

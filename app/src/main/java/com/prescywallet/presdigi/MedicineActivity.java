@@ -1,37 +1,27 @@
 package com.prescywallet.presdigi;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.provider.MediaStore;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -41,11 +31,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.model.LatLng;
 import com.prescywallet.presdigi.Abstract.Converter;
-import com.prescywallet.presdigi.Adapters.PrescribedMedicineAdapter;
 import com.prescywallet.presdigi.Model.CartItem;
 import com.prescywallet.presdigi.Model.ChemistLatLngItem;
 import com.prescywallet.presdigi.Model.DeliveryAddressItem;
-import com.prescywallet.presdigi.Model.MedicineItem;
 import com.prescywallet.presdigi.Session.LocationSessionManager;
 import com.prescywallet.presdigi.Session.MobileNumberSessionManager;
 import com.prescywallet.presdigi.database.CartDbHelper;
@@ -56,9 +44,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -85,7 +71,7 @@ public class MedicineActivity extends AppCompatActivity implements LocationListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicine);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -241,7 +227,7 @@ public class MedicineActivity extends AppCompatActivity implements LocationListe
     private void getChemistLatLng() {
         MobileNumberSessionManager mobileNumberSessionManager = new MobileNumberSessionManager(getApplicationContext());
         HashMap<String, String> user = mobileNumberSessionManager.geMobileDetails();
-        final String session_mob = user.get(mobileNumberSessionManager.KEY_MOB);
+        final String session_mob = user.get(MobileNumberSessionManager.KEY_MOB);
         String url = "http://prescryp.com/prescriptionUpload/getChemistLatLong.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

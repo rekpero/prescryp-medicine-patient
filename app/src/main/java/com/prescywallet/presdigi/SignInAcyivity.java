@@ -3,16 +3,17 @@ package com.prescywallet.presdigi;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -99,8 +100,8 @@ public class SignInAcyivity extends AppCompatActivity implements GoogleApiClient
 
         }
 
-        fb_card = (ImageButton) findViewById(R.id.fb_card);
-        loginButton = (LoginButton) findViewById(R.id.fb_login_button);
+        fb_card = findViewById(R.id.fb_card);
+        loginButton = findViewById(R.id.fb_login_button);
         fb_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,7 +189,7 @@ public class SignInAcyivity extends AppCompatActivity implements GoogleApiClient
         loginButton.registerCallback(callbackManager, callback);
 
 
-        google_card = (ImageButton) findViewById(R.id.google_card);
+        google_card = findViewById(R.id.google_card);
 
         findViewById(R.id.google_card).setOnClickListener(this);
 
@@ -216,9 +217,7 @@ public class SignInAcyivity extends AppCompatActivity implements GoogleApiClient
         }
 
 
-
-
-        TextView create_acc = (TextView) findViewById(R.id.new_acc_link);
+        TextView create_acc = findViewById(R.id.new_acc_link);
         create_acc.setText(Html.fromHtml("New to PresDigi? <b>Create an account</b>"));
         create_acc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,7 +230,7 @@ public class SignInAcyivity extends AppCompatActivity implements GoogleApiClient
             }
         });
 
-        CardView signin = (CardView) findViewById(R.id.signin_card);
+        CardView signin = findViewById(R.id.signin_card);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

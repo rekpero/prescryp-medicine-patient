@@ -13,18 +13,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.multidex.MultiDex;
+
 import com.google.android.gms.maps.model.LatLng;
 import com.prescywallet.presdigi.Misc.RunTimePermission;
 import com.prescywallet.presdigi.Model.ChemistLatLngItem;
@@ -34,16 +29,11 @@ import com.prescywallet.presdigi.Session.MobileNumberSessionManager;
 import com.prescywallet.presdigi.database.NearbyChemistDBHelper;
 import com.prescywallet.presdigi.database.PatientAddressDBHelper;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 public class HomeActivity extends Activity implements LocationListener {
@@ -60,6 +50,12 @@ public class HomeActivity extends Activity implements LocationListener {
     Geocoder geocoder;
     List<Address> addresses;
     LocationSessionManager sessionManager;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -232,62 +228,63 @@ public class HomeActivity extends Activity implements LocationListener {
     private void getChemistLatLng() {
         final String session_mob;
         MobileNumberSessionManager mobileNumberSessionManager = new MobileNumberSessionManager(getApplicationContext());
-        if (mobileNumberSessionManager.isMobLoggedIn()){
+        if (mobileNumberSessionManager.isMobLoggedIn()) {
             HashMap<String, String> user = mobileNumberSessionManager.geMobileDetails();
             session_mob = user.get(MobileNumberSessionManager.KEY_MOB);
-        }else {
+        } else {
             session_mob = "9474859632";
         }
+        latch.countDown();
 
-        String url = "http://prescryp.com/prescriptionUpload/getChemistLatLong.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
-                            String message = jsonObject.getString("message");
-                            JSONArray jsonArray = jsonObject.getJSONArray("chemist");
-                            //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                            if (success.equalsIgnoreCase("1")) {
-                                for (int i = 0; i < jsonArray.length(); i++) {
-
-                                    //getting product object from json array
-                                    JSONObject product = jsonArray.getJSONObject(i);
-
-                                    chemistLatLngItems.add(new ChemistLatLngItem(product.getString("chemist_mobile_number"),
-                                            product.getString("chemist_store_name"),
-                                            new LatLng(Double.valueOf(product.getString("latitude")),
-                                                    Double.valueOf(product.getString("longitude")))));
-
-                                }
-
-                                latch.countDown();
-
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("mobilenumber", session_mob);
-                return params;
-            }
-        };
-
-        Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
+//        String url = "http://prescryp.com/prescriptionUpload/getChemistLatLong.php";
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(response);
+//                            String success = jsonObject.getString("success");
+//                            String message = jsonObject.getString("message");
+//                            JSONArray jsonArray = jsonObject.getJSONArray("chemist");
+//                            //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+//                            if (success.equalsIgnoreCase("1")) {
+//                                for (int i = 0; i < jsonArray.length(); i++) {
+//
+//                                    //getting product object from json array
+//                                    JSONObject product = jsonArray.getJSONObject(i);
+//
+//                                    chemistLatLngItems.add(new ChemistLatLngItem(product.getString("chemist_mobile_number"),
+//                                            product.getString("chemist_store_name"),
+//                                            new LatLng(Double.valueOf(product.getString("latitude")),
+//                                                    Double.valueOf(product.getString("longitude")))));
+//
+//                                }
+//
+//                                latch.countDown();
+//
+//
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//
+//                    }
+//                }) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                HashMap<String, String> params = new HashMap<>();
+//                params.put("mobilenumber", session_mob);
+//                return params;
+//            }
+//        };
+//
+//        Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
     }
 
 

@@ -2,12 +2,13 @@ package com.prescywallet.presdigi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+
+import com.google.android.material.textfield.TextInputLayout;
 import com.prescywallet.presdigi.Session.MobileNumberSessionManager;
 
 public class ChangeMobileNumberActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class ChangeMobileNumberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_mobile_number_bar_main);
-        toolbar = (Toolbar) findViewById(R.id.changeMobNumToolbar);
+        toolbar = findViewById(R.id.changeMobNumToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -31,8 +32,8 @@ public class ChangeMobileNumberActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        new_mobile_number = (TextInputLayout) findViewById(R.id.input_new_mobile_number);
-        change_mobile_card = (CardView) findViewById(R.id.change_mob_card);
+        new_mobile_number = findViewById(R.id.input_new_mobile_number);
+        change_mobile_card = findViewById(R.id.change_mob_card);
         change_mobile_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

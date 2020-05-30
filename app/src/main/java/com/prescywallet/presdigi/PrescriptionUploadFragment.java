@@ -2,11 +2,6 @@ package com.prescywallet.presdigi;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +9,18 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kosalgeek.android.photoutil.ImageBase64;
 import com.kosalgeek.android.photoutil.ImageLoader;
 import com.prescywallet.presdigi.Session.MobileNumberSessionManager;
@@ -67,15 +68,15 @@ public class PrescriptionUploadFragment extends Fragment {
         return view;
     }
 
-    private void uploadImageView(View view){
+    private void uploadImageView(View view) {
 
-        imgShow = (ImageView) view.findViewById(R.id.imgShow);
-        progressBar = (ProgressBar) view.findViewById(R.id.loading);
-        uploadPresToolbar = (Toolbar) view.findViewById(R.id.uploadPresToolbar);
+        imgShow = view.findViewById(R.id.imgShow);
+        progressBar = view.findViewById(R.id.loading);
+        uploadPresToolbar = view.findViewById(R.id.uploadPresToolbar);
         uploadPresToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
         uploadPresToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +89,7 @@ public class PrescriptionUploadFragment extends Fragment {
         init();
 
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.nextBtn);
+        FloatingActionButton fab = view.findViewById(R.id.nextBtn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,10 +121,10 @@ public class PrescriptionUploadFragment extends Fragment {
                         String success = jsonObject.getString("success");
                         String message = jsonObject.getString("message");
                         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                        if (success.equalsIgnoreCase("1")){
+                        if (success.equalsIgnoreCase("1")) {
                             imgShow.setImageResource(R.drawable.img_show_upload);
-                            if (((MainActivity)getActivity()) != null){
-                            ((MainActivity)getActivity()).navigation.setSelectedItemId(R.id.navigation_prescription);
+                            if (getActivity() != null) {
+                                ((MainActivity) getActivity()).navigation.setSelectedItemId(R.id.navigation_prescription);
                             }
 
                         }
@@ -136,8 +137,8 @@ public class PrescriptionUploadFragment extends Fragment {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     imgShow.setImageResource(R.drawable.img_show_upload);
-                    if (((MainActivity)getActivity()) != null){
-                        ((MainActivity)getActivity()).navigation.setSelectedItemId(R.id.navigation_prescription);
+                    if (getActivity() != null) {
+                        ((MainActivity) getActivity()).navigation.setSelectedItemId(R.id.navigation_prescription);
                     }
                     Volley.newRequestQueue(getApplicationContext()).getCache().clear();
                     progressBar.setVisibility(View.INVISIBLE);

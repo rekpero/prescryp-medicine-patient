@@ -2,15 +2,15 @@ package com.prescywallet.presdigi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 import com.prescywallet.presdigi.Session.UserSessionManager;
 
 import org.json.JSONArray;
@@ -42,7 +43,7 @@ public class SigninActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_bar_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -62,7 +63,7 @@ public class SigninActivity extends AppCompatActivity {
 
         signin = findViewById(R.id.signinCardview);
         create_acc = findViewById(R.id.create_new_acc_button);
-        progressBar = (ProgressBar) findViewById(R.id.loading);
+        progressBar = findViewById(R.id.loading);
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +130,7 @@ public class SigninActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.INVISIBLE);
                         mob_num.getEditText().getText().clear();
                         pass_word.getEditText().getText().clear();
-                        RelativeLayout layout = (RelativeLayout) findViewById(R.id.signin);
+                        RelativeLayout layout = findViewById(R.id.signin);
                         layout.clearFocus();
                         mob_num.requestFocus();
                     }

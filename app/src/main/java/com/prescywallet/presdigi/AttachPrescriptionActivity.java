@@ -21,16 +21,17 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.prescywallet.presdigi.Adapters.AttachedDigitalPrescriptionListAdapter;
 import com.prescywallet.presdigi.Adapters.AttachedPrescriptionBitmapAdapter;
@@ -58,7 +59,7 @@ public class AttachPrescriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attach_prescription);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -494,29 +495,30 @@ public class AttachPrescriptionActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int reqCode, int resCode, Intent data) {
+        super.onActivityResult(reqCode, resCode, data);
         assert data.getData() != null;
-        if(reqCode == GALLERY_REQUEST && resCode == Activity.RESULT_OK){
+        if (reqCode == GALLERY_REQUEST && resCode == Activity.RESULT_OK) {
             try {
-                InputStream iStream =   getContentResolver().openInputStream(data.getData());
+                InputStream iStream = getContentResolver().openInputStream(data.getData());
                 byte[] inputData = getBytes(iStream);
                 mDialog = new ProgressDialog(this);
                 mDialog.setMessage("Retrieving data...");
                 mDialog.show();
-                savePicTask = new AttachPrescriptionActivity.SavePicTask(inputData, 0);
+                savePicTask = new SavePicTask(inputData, 0);
                 savePicTask.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-        }else if (reqCode == CAMERA_REQUEST && resCode == Activity.RESULT_OK ){
+        } else if (reqCode == CAMERA_REQUEST && resCode == Activity.RESULT_OK) {
 
             try {
-                InputStream iStream =   getContentResolver().openInputStream(mHighQualityImageUri);
+                InputStream iStream = getContentResolver().openInputStream(mHighQualityImageUri);
                 byte[] inputData = getBytes(iStream);
                 mDialog = new ProgressDialog(this);
                 mDialog.setMessage("Loading Prescription...");
                 mDialog.show();
-                savePicTask = new AttachPrescriptionActivity.SavePicTask(inputData, 0);
+                savePicTask = new SavePicTask(inputData, 0);
                 savePicTask.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             } catch (IOException e) {
                 e.printStackTrace();

@@ -2,13 +2,14 @@ package com.prescywallet.presdigi.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.prescywallet.presdigi.Model.MedicineItem;
 import com.prescywallet.presdigi.R;
@@ -63,7 +64,7 @@ public class MedicineListAdapter extends RecyclerView.Adapter<MedicineListAdapte
         public ViewHolder(View itemview){
             super(itemview);
             medicineName = itemview.findViewById(R.id.medicinesName);
-            medicineLinearView = (LinearLayout) itemview.findViewById(R.id.medicineLinearView);
+            medicineLinearView = itemview.findViewById(R.id.medicineLinearView);
 
         }
     }
